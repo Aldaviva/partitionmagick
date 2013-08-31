@@ -1,14 +1,14 @@
 package vc.bjn.partitionmagick.config;
 
 import org.glassfish.jersey.jackson.JacksonFeature;
-import org.glassfish.jersey.media.sse.SseFeature;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
 
 public class ApiConfig extends ResourceConfig {
 
 	public ApiConfig(){
-//		register(RequestContextFilter.class);
-		super(SseFeature.class, JacksonFeature.class);
+		super(JacksonFeature.class);
+		register(RequestContextFilter.class);
 
 		packages("vc.bjn.partitionmagick.api.resource");
 	}
