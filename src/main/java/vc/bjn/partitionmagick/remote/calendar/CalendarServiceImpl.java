@@ -51,7 +51,6 @@ public class CalendarServiceImpl implements CalendarService {
 		LOGGER.debug("Downloading calendar {}", calId);
 		final List<CalendarEvent> results = new ArrayList<>();
 		String pageToken = null;
-		final int page = 0;
 
 		try {
 			do {
