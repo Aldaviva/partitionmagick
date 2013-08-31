@@ -51,11 +51,10 @@ public class CalendarServiceImpl implements CalendarService {
 		LOGGER.debug("Downloading calendar {}", calId);
 		final List<CalendarEvent> results = new ArrayList<>();
 		String pageToken = null;
-		int page = 0;
+		final int page = 0;
 
 		try {
 			do {
-				LOGGER.debug("fetching calendar page {}", ++page);
 				final Events response = calendar.events().list(calId)
 					.setSingleEvents(true)
 					.setOrderBy(ORDERBY_STARTTIME)

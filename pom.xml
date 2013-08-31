@@ -10,7 +10,7 @@
 
 	<properties>
 		<spring.version>3.2.4.RELEASE</spring.version>
-		<jersey.version>1.17.1</jersey.version>
+		<jersey.version>2.2</jersey.version>
 		<slf4j.version>1.7.5</slf4j.version>
 
 		<lesscss.outputDirectory>${project.build.directory}/${project.build.finalName}/styles</lesscss.outputDirectory>
@@ -39,42 +39,26 @@
 			<artifactId>spring-tx</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		
+
 		<!-- Jersey -->
 		<dependency>
-			<groupId>com.sun.jersey.contribs</groupId>
-			<artifactId>jersey-spring</artifactId>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-sse</artifactId>
 			<version>${jersey.version}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>commons-logging</artifactId>
-					<groupId>commons-logging</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>spring-core</artifactId>
-					<groupId>org.springframework</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>spring-beans</artifactId>
-					<groupId>org.springframework</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>spring-context</artifactId>
-					<groupId>org.springframework</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>spring-web</artifactId>
-					<groupId>org.springframework</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>spring-aop</artifactId>
-					<groupId>org.springframework</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-json</artifactId>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-json-jackson</artifactId>
+			<version>${jersey.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.ext</groupId>
+			<artifactId>jersey-spring3</artifactId>
+			<version>${jersey.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-servlet</artifactId>
 			<version>${jersey.version}</version>
 		</dependency>
 
@@ -95,6 +79,11 @@
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 			<version>2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time-jsptags</artifactId>
+			<version>1.1.1</version>
 		</dependency>
 
 		<!-- Google Calendar -->
@@ -127,7 +116,7 @@
 			<artifactId>guava</artifactId>
 			<version>15.0-rc1</version>
 		</dependency>
-		
+
 		<!-- JSP tag library -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -141,14 +130,16 @@
 			<version>1.1.2</version>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- To make eclipse's compiler happy. Breaks in Tomcat 8 though. -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jsp-api</artifactId>
 			<version>2.0</version>
 			<scope>runtime</scope>
 		</dependency>
+		
 	</dependencies>
-	
+
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
@@ -187,7 +178,7 @@
 					<sourceDirectory>${project.basedir}/src/main/webapp/styles</sourceDirectory>
 					<outputDirectory>${lesscss.outputDirectory}</outputDirectory>
 					<compress>true</compress>
-					
+
 				</configuration>
 				<executions>
 					<execution>
@@ -214,7 +205,7 @@
 			</properties>
 		</profile>
 	</profiles>
-	
+
 	<prerequisites>
 		<maven>2.2.1</maven>
 	</prerequisites>

@@ -10,7 +10,6 @@ public class CalendarEvent {
 	private String description;
 
 	public CalendarEvent(){
-
 	}
 
 	public CalendarEvent(final Event googleCalendarEvent){
