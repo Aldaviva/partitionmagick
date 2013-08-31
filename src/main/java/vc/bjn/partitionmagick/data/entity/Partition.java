@@ -7,9 +7,9 @@ public class Partition {
 	private BigInteger id;
 	private String name;
 	private String environment;
-	private String version;
+	private String release;
 	private String branch;
-	private int popCount;
+	private Integer popCount;
 	private String appNodeCount;
 	private String conNodeCount;
 	private String medNodeCount;
@@ -33,11 +33,11 @@ public class Partition {
 	public void setEnvironment(final String environment) {
 		this.environment = environment;
 	}
-	public String getVersion() {
-		return version;
+	public String getRelease() {
+		return release;
 	}
-	public void setVersion(final String version) {
-		this.version = version;
+	public void setRelease(final String release) {
+		this.release = release;
 	}
 	public String getBranch() {
 		return branch;
@@ -45,10 +45,10 @@ public class Partition {
 	public void setBranch(final String branch) {
 		this.branch = branch;
 	}
-	public int getPopCount() {
+	public Integer getPopCount() {
 		return popCount;
 	}
-	public void setPopCount(final int popCount) {
+	public void setPopCount(final Integer popCount) {
 		this.popCount = popCount;
 	}
 	public String getAppNodeCount() {
@@ -88,7 +88,7 @@ public class Partition {
 		result = prime * result + ((medNodeCount == null) ? 0 : medNodeCount.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + popCount;
-		result = prime * result + ((version == null) ? 0 : version.hashCode());
+		result = prime * result + ((release == null) ? 0 : release.hashCode());
 		return result;
 	}
 	@Override
@@ -162,11 +162,11 @@ public class Partition {
 		if (popCount != other.popCount) {
 			return false;
 		}
-		if (version == null) {
-			if (other.version != null) {
+		if (release == null) {
+			if (other.release != null) {
 				return false;
 			}
-		} else if (!version.equals(other.version)) {
+		} else if (!release.equals(other.release)) {
 			return false;
 		}
 		return true;
@@ -175,7 +175,7 @@ public class Partition {
 	public String toString() {
 		return String.format(
 			"Partition [id=%s, name=%s, environment=%s, version=%s, branch=%s, popCount=%s, appNodeCount=%s, conNodeCount=%s, medNodeCount=%s, comments=%s]",
-			id, name, environment, version, branch, popCount, appNodeCount, conNodeCount, medNodeCount, comments);
+			id, name, environment, release, branch, popCount, appNodeCount, conNodeCount, medNodeCount, comments);
 	}
 
 

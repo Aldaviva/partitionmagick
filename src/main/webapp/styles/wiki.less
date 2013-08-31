@@ -1,0 +1,72 @@
+body {
+	margin: 0;
+}
+
+table {
+	color: #444444;
+	font: 10pt/1.6 "Arial", "Verdana", sans-serif;
+	border: 1px solid #444444;
+	border-collapse: collapse;
+	
+	thead {
+		font-weight: bold;
+	}
+	
+	th {
+		&.release, &.branch {
+			text-transform: uppercase;
+		}
+		
+		&.environment {
+			width: 102px;
+		}
+		
+		&.name {
+			width: 57px;
+		}
+		
+		&.release {
+			width: 60px;
+		}
+
+		&.branch {
+			width: 116px;
+		}
+
+		&.popCount {
+			width: 41px;
+		}
+
+		&.appNodeCount {
+			width: 56px;
+		}
+
+		&.conNodeCount {
+			width: 82px;
+		}
+
+		&.medNodeCount {
+			width: 86px;
+		}
+
+		&.comments {
+			width: 412px;
+		}
+
+	}
+	
+	td, th {
+		border-width: 1px;
+		text-align: left;
+		vertical-align: top;
+	}
+	
+	tr {
+		td {
+			
+			&.environment, &.name, &.branch {
+				text-transform: uppercase;
+			}
+		}
+	}
+}
