@@ -14,6 +14,7 @@ public class Partition {
 	private String conNodeCount;
 	private String medNodeCount;
 	private String comments;
+	private Integer sort;
 
 	public BigInteger getId() {
 		return id;
@@ -75,6 +76,12 @@ public class Partition {
 	public void setComments(final String comments) {
 		this.comments = comments;
 	}
+	public Integer getSort() {
+		return sort;
+	}
+	public void setSort(final Integer sort) {
+		this.sort = sort;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -87,8 +94,9 @@ public class Partition {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((medNodeCount == null) ? 0 : medNodeCount.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + popCount;
+		result = prime * result + ((popCount == null) ? 0 : popCount.hashCode());
 		result = prime * result + ((release == null) ? 0 : release.hashCode());
+		result = prime * result + ((sort == null) ? 0 : sort.hashCode());
 		return result;
 	}
 	@Override
@@ -159,7 +167,11 @@ public class Partition {
 		} else if (!name.equals(other.name)) {
 			return false;
 		}
-		if (popCount != other.popCount) {
+		if (popCount == null) {
+			if (other.popCount != null) {
+				return false;
+			}
+		} else if (!popCount.equals(other.popCount)) {
 			return false;
 		}
 		if (release == null) {
@@ -169,15 +181,20 @@ public class Partition {
 		} else if (!release.equals(other.release)) {
 			return false;
 		}
+		if (sort == null) {
+			if (other.sort != null) {
+				return false;
+			}
+		} else if (!sort.equals(other.sort)) {
+			return false;
+		}
 		return true;
 	}
 	@Override
 	public String toString() {
-		return String.format(
-			"Partition [id=%s, name=%s, environment=%s, version=%s, branch=%s, popCount=%s, appNodeCount=%s, conNodeCount=%s, medNodeCount=%s, comments=%s]",
-			id, name, environment, release, branch, popCount, appNodeCount, conNodeCount, medNodeCount, comments);
+		return String
+			.format(
+				"Partition [id=%s, name=%s, environment=%s, release=%s, branch=%s, popCount=%s, appNodeCount=%s, conNodeCount=%s, medNodeCount=%s, comments=%s, sort=%s]",
+				id, name, environment, release, branch, popCount, appNodeCount, conNodeCount, medNodeCount, comments, sort);
 	}
-
-
-
 }

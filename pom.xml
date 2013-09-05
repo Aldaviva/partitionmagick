@@ -185,7 +185,9 @@
 					<sourceDirectory>${project.basedir}/src/main/webapp/styles</sourceDirectory>
 					<outputDirectory>${lesscss.outputDirectory}</outputDirectory>
 					<compress>true</compress>
-
+					<includes>
+						<include>dashboard.less</include>
+					</includes>
 				</configuration>
 				<executions>
 					<execution>

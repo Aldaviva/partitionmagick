@@ -1,0 +1,31 @@
+@import "reset.less";
+@import "definitions.less";
+@import "fonts.less";
+@import "helpers.less";
+
+body {
+	background: black;
+	color: white;
+	font: 1em "Din 1451 Mittelschrift";
+}
+
+@import "dashboard-partitions.less";
+@import "dashboard-calendar.less";
+
+.partitions {
+	margin-left: 32px;
+	margin-right: 550px;
+}
+
+.calendar {
+	position: absolute;
+	top: 38px;
+	right: 38px;
+}
+
+.branch {
+	&.live   { color: @green;  }
+	&.beta   { color: @blue;   }
+	&.master { color: @red;    }
+	&.rel    { color: @purple; }
+}
