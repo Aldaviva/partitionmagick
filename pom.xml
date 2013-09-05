@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>vc.bjn.partitionmagick</groupId>
 	<artifactId>partitionmagick</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<packaging>war</packaging>
 	<name>PartitionMagic</name>
 	<description>Which branch and version is running on which partition, and when will this change?</description>
@@ -187,6 +187,7 @@
 					<compress>true</compress>
 					<includes>
 						<include>dashboard.less</include>
+						<include>wiki.less</include>
 					</includes>
 				</configuration>
 				<executions>
