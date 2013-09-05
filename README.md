@@ -21,6 +21,14 @@ You need the private key for the Google Calendar API client, which is not checke
 	$ mvn package
 	$ cp target/partitionmagick.war /path/to/webapps
 
+## Pages
+
+**dashboard** `/partitionmagick/`
+
+**editor** `/partitionmagick/admin`
+
+**wiki iframe** `/partitionmagick/wiki`
+
 ## Buzzwords
 
 * Mongo
