@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>Partitions</title>
+		<title>Wiki - Partitions</title>
 		<link href="${pageContext.request.contextPath}/styles/wiki.css" rel="stylesheet" type="text/css" />
 	</head>
 	

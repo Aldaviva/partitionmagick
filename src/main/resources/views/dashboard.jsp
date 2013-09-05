@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>
 <!DOCTYPE html>
 <html>
@@ -26,29 +27,35 @@
 		
 		<div class="calendar">
 			<c:forEach items="${calendarEvents}" var="event">
-				<div class="date">
-					<span class="month">
-						<joda:format value="${event.start}" pattern="MMM"/>
-					</span>
-					<span class="day-of-month">
-						<joda:format value="${event.start}" pattern="d"/>
-					</span>
-					<span class="day-of-week">
-						<joda:format value="${event.start}" pattern="E"/>
-					</span>
+				<div class="event">
+					<div class="date">
+						<span class="month">
+							<joda:format value="${event.start}" pattern="MMM"/>
+						</span>
+						<span class="day-of-month">
+							<joda:format value="${event.start}" pattern="d"/>
+						</span>
+						<span class="day-of-week">
+							<joda:format value="${event.start}" pattern="E"/>
+						</span>
+					</div>
+					
+					<div class="name">
+						<c:forTokens items="${event.name}" delims=" " var="token">
+							<c:choose>
+								<c:when test='${fn:containsIgnoreCase("z1 z2 a1 a2 q1 q2", token)}'>
+									<span class="partition">${token}</span>
+								</c:when>
+								<c:when test='${fn:containsIgnoreCase("master rel beta live", token)}'>
+									<span class="branch ${token}">${token}</span>
+								</c:when>
+								<c:otherwise>
+									<c:out value="${token}" />
+								</c:otherwise>
+							</c:choose>
+						</c:forTokens>
+					</div>
 				</div>
-				
-				<div class="name">
-					${event.name}
-				</div>
-			</c:forEach>
-		</div>
-		
-		<div class="comments">
-			<c:forEach items="${partitions}" var="partition">
-				<c:if test="${partition.comments != null}">
-					<div>${partition.comments}</div>
-				</c:if>
 			</c:forEach>
 		</div>
 		

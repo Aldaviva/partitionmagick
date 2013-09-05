@@ -1,0 +1,49 @@
+.partitions {
+	.partition {
+		display             : -ms-flexbox;
+		display             : -webkit-flex;
+		display             : -moz-flex;
+		display             : flex;
+		-webkit-flex-flow   : row no-wrap;
+		-moz-flex-flow      : row no-wrap;
+		-ms-flex-direction  : row;
+		-ms-flex-wrap       : nowrap;
+		-webkit-align-items : center;
+		-moz-align-items    : center;
+		-ms-flex-align      : center;
+		flex-flow           : row no-wrap;
+		align-items         : center;
+		
+		height: floor(@screen_height / @partition_count) - 1px;
+		
+		+ .partition {
+			border-top: 1px solid hsl(0, 0%, 17%);
+		}
+		
+		.label {
+			font-size: 85px;
+			text-transform: uppercase;
+			flex: 3.2;
+			
+			.name {
+				color: @orange;
+			}
+		}
+		
+		.release {
+			.gray-text(67%);
+			font-size: 47px;
+			flex: 2.2;
+		}
+		
+		.branch {
+			font-size: 38px;
+			text-transform: uppercase;
+			flex: 1.2;
+		}
+	}
+}
+
+.partition .branch {
+	.gray-text(78%);
+}

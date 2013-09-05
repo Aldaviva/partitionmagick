@@ -5,6 +5,7 @@ import vc.bjn.partitionmagick.data.repository.PartitionRepository;
 import vc.bjn.partitionmagick.remote.calendar.CalendarService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,7 @@ public class DashboardController {
 
 	@RequestMapping
 	public String index(final ModelMap model){
-		model.addAttribute("partitions", partitionRepository.findAll());
+		model.addAttribute("partitions", partitionRepository.findAll(new Sort("sort")));
 		model.addAttribute("calendarEvents", calendarService.findEvents(CalendarPredicates.FUTURE_EVENTS));
 		return "dashboard";
 	}

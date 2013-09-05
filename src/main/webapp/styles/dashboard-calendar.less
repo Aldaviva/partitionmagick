@@ -1,0 +1,50 @@
+.calendar {
+	@date_width: 84px;
+	
+	.event {
+		background-color: hsl(0, 0%, 10%);
+		position: relative;
+		width: 474px;
+		min-height: 123px;
+		
+		.date {
+			background-color: hsl(0, 0%, 9%);
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			width: @date_width;
+			text-align: center;
+			padding-top: 15px;
+			
+			> span {
+				display: block;
+			}
+			
+			.month, .day-of-week {
+				.gray-text(78%);
+				font-size: 17px;
+				text-transform: uppercase;
+			}
+			
+			.day-of-month {
+				font: 53px/37px "DIN 1451 Engschrift";
+				padding: 7px 0 10px;
+			}
+		}
+		
+		.name {
+			font-size: 26px;
+			padding: 31px 24px;
+			margin-left: @date_width;
+			
+			.partition {
+				color: @orange;
+			}
+		}
+		
+		+ .event {
+			margin-top: 23px;
+		}
+	}
+}
