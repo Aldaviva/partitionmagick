@@ -27,6 +27,13 @@
 	filter: ~'alpha(opacity=@{ieValue})';
 }
 
+.flex(@value) {
+	-webkit-flex: @value;
+	-moz-flex: @value;
+	-ms-flex: @value;
+	flex: @value;
+}
+
 .linear-gradient(...){
 	background-image: ~"linear-gradient(@{arguments})";
 	background-image: ~"-o-linear-gradient(@{arguments})";
