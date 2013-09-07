@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CalendarUpdateServiceImpl implements CalendarUpdateService {
 
-	private static final int POLL_INTERVAL_MILLIS = 10*1000;
+	private static final int POLL_INTERVAL_MILLIS = 30*1000;
 
 	@Autowired private CalendarService calendarService;
 	@Autowired private BroadcastService broadcastService;
