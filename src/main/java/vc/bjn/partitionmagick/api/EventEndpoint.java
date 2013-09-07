@@ -1,51 +1,40 @@
 package vc.bjn.partitionmagick.api;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.ImmutableMap;
+import java.util.Random;
+import org.atmosphere.config.service.Disconnect;
+import org.atmosphere.config.service.ManagedService;
+import org.atmosphere.config.service.Ready;
+import org.atmosphere.cpr.AtmosphereResource;
+import org.atmosphere.cpr.AtmosphereResourceEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-
-//@ServerEndpoint("/events")
+@ManagedService
 public class EventEndpoint {
 
-	/*private static final Logger LOGGER = LoggerFactory.getLogger(EventEndpoint.class);
-	private static final Set<EventEndpoint> INSTANCES = new CopyOnWriteArraySet<>(); //should probably not be static
+	private static final Logger LOGGER = LoggerFactory.getLogger(EventEndpoint.class);
+	private static final long INSTANCE_ID = new Random().nextLong();
+	private static final ObjectMapper objectMapper = new ObjectMapper();
 
-	private Session session;
-
-	public EventEndpoint(){
-	}
-
-	@OnOpen
-	public void onOpen(final Session session) {
-		this.session = session;
-		INSTANCES.add(this);
-		LOGGER.debug("client connected");
-	}
-
-	@OnClose
-	public void onClose(){
-		INSTANCES.remove(this);
-		LOGGER.debug("client disconnected");
-	}
-
-	@OnError
-	public void onError(final Throwable err){
-		LOGGER.error("client error", err);
-	}
-
-	public static void broadcast(final String message){
-		for(final EventEndpoint eventEndpoint : INSTANCES){
-			try {
-				eventEndpoint.session.getBasicRemote().sendText(message);
-			} catch (final IOException e){
-				INSTANCES.remove(eventEndpoint);
-				try {
-					eventEndpoint.session.close();
-				} catch (final IOException e2){
-				}
-				LOGGER.debug("cleaning up disconnected client");
-			}
+	@Ready
+	public void onReady(final AtmosphereResource r) {
+		LOGGER.debug("Client connected.");
+		try {
+			r.write(objectMapper.writeValueAsString(ImmutableMap.of("serverInstance", INSTANCE_ID)));
+		} catch (final JsonProcessingException e) {
 		}
-		LOGGER.debug("broadcast {}", message);
-	}*/
+	}
 
+	@Disconnect
+	public void onDisconnect(final AtmosphereResourceEvent event) {
+		if (event.isCancelled()) {
+			LOGGER.info("Client unexpectedly disconnected");
+		} else if (event.isClosedByClient()) {
+			LOGGER.info("Client closed the connection");
+		}
+	}
 
 }

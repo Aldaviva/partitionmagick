@@ -31,6 +31,16 @@
 		<servlet-name>Jersey</servlet-name>
 		<url-pattern>/api/*</url-pattern>
 	</servlet-mapping>-->
+	
+	<servlet>
+        <servlet-name>AtmosphereServlet</servlet-name>
+        <servlet-class>org.atmosphere.cpr.AtmosphereServlet</servlet-class>
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AtmosphereServlet</servlet-name>
+        <url-pattern>/events/*</url-pattern>
+    </servlet-mapping>
 
 	<servlet>
 		<servlet-name>Spring MVC</servlet-name>

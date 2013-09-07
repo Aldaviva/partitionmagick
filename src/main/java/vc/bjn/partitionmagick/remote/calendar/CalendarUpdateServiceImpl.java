@@ -25,8 +25,6 @@ public class CalendarUpdateServiceImpl implements CalendarUpdateService {
 		if(!newEvents.equals(oldEvents)){
 			onUpdate(newEvents);
 		}
-
-		broadcastService.broadcast("ping");
 	}
 
 	@Override

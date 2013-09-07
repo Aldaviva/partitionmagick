@@ -59,6 +59,10 @@
 			</c:forEach>
 		</div>
 		
+		<script type="text/javascript">
+			window.contextPath = "${pageContext.request.contextPath}";
+		</script>
+		<script src="${pageContext.request.contextPath}/javascript/atmosphere.js" type="text/javascript"></script>
 		<script src="${pageContext.request.contextPath}/scripts/dashboard.js" type="text/javascript"></script>
 	</body>
 </html>

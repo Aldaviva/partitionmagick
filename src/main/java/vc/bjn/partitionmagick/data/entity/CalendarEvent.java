@@ -20,8 +20,7 @@ public class CalendarEvent {
 		com.google.api.client.util.DateTime googleStartDate = googleCalendarEvent.getStart().getDateTime();
 		if(googleStartDate == null){
 			googleStartDate = googleCalendarEvent.getStart().getDate();
-			start = new DateTime(googleStartDate.getValue(), DateTimeZone.getDefault());
-//			start = new DateTime(googleStartDate.getValue(), DateTimeZone.forOffsetHours(googleStartDate.getTimeZoneShift())).withZoneRetainFields(DateTimeZone.getDefault());
+			start = new DateTime(googleStartDate.getValue(), DateTimeZone.forOffsetHours(googleStartDate.getTimeZoneShift())).withZoneRetainFields(DateTimeZone.getDefault());
 		} else {
 			start = new DateTime(googleStartDate.getValue());
 		}
