@@ -4,8 +4,10 @@ import vc.bjn.partitionmagick.data.entity.CalendarEvent;
 
 import java.util.List;
 
-public interface CalendarService {
+public interface CalendarUpdateService {
 
-	List<CalendarEvent> updateEvents();
-	List<CalendarEvent> getCachedEvents();
+	void pollForUpdates();
+
+	void onUpdate(List<CalendarEvent> newEvents);
+
 }

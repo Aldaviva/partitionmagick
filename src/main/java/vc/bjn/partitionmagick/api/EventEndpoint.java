@@ -1,26 +1,16 @@
-package vc.bjn.partitionmagick.api.resource;
+package vc.bjn.partitionmagick.api;
 
-import java.io.IOException;
-import java.util.Set;
-import java.util.concurrent.CopyOnWriteArraySet;
-import javax.websocket.OnClose;
-import javax.websocket.OnError;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
-import javax.websocket.server.ServerEndpoint;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-@ServerEndpoint("/events")
+
+//@ServerEndpoint("/events")
 public class EventEndpoint {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(EventEndpoint.class);
+	/*private static final Logger LOGGER = LoggerFactory.getLogger(EventEndpoint.class);
 	private static final Set<EventEndpoint> INSTANCES = new CopyOnWriteArraySet<>(); //should probably not be static
 
 	private Session session;
 
 	public EventEndpoint(){
-		LOGGER.debug("connection starting...");
 	}
 
 	@OnOpen
@@ -55,7 +45,7 @@ public class EventEndpoint {
 			}
 		}
 		LOGGER.debug("broadcast {}", message);
-	}
+	}*/
 
 
 }

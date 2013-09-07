@@ -11,7 +11,9 @@
 	};
 	
 	socket.onmessage = function(event){
-		if(event.data == 'update'){
+		var message = event.data;
+		console.info("received "+message);
+		if(message == 'update'){
 			window.location.reload();
 		}
 	};

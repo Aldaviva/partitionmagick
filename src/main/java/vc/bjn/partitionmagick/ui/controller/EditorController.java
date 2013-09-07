@@ -1,8 +1,8 @@
 package vc.bjn.partitionmagick.ui.controller;
 
-import vc.bjn.partitionmagick.api.resource.EventEndpoint;
 import vc.bjn.partitionmagick.data.entity.Partition;
 import vc.bjn.partitionmagick.data.repository.PartitionRepository;
+import vc.bjn.partitionmagick.service.BroadcastService;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class EditorController {
 
 	@Autowired private PartitionRepository partitionRepository;
+	@Autowired private BroadcastService broadcastService;
 
 	@RequestMapping
 	public String index(final ModelMap model){
@@ -31,7 +32,7 @@ public class EditorController {
 	@RequestMapping(method=RequestMethod.POST)
 	public String save(@ModelAttribute("formData") final EditorFormData formData){
 		partitionRepository.save(formData.getPartitions());
-		EventEndpoint.broadcast("update");
+		broadcastService.broadcast("update");
 
 		return "redirect:/admin";
 	}

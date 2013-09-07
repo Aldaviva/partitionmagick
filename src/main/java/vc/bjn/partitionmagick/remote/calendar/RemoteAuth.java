@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -49,7 +50,10 @@ public class RemoteAuth {
 	}
 
 	private static void enableHttpLogging() {
+		SLF4JBridgeHandler.install();
+
 		final Logger logger = Logger.getLogger(HttpTransport.class.getName());
+		logger.setUseParentHandlers(false);
 		logger.setLevel(Level.ALL);
 		logger.addHandler(new Handler() {
 			@Override

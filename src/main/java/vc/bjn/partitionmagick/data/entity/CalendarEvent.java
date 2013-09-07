@@ -2,6 +2,7 @@ package vc.bjn.partitionmagick.data.entity;
 
 import com.google.api.services.calendar.model.Event;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 
 public class CalendarEvent {
 
@@ -19,8 +20,11 @@ public class CalendarEvent {
 		com.google.api.client.util.DateTime googleStartDate = googleCalendarEvent.getStart().getDateTime();
 		if(googleStartDate == null){
 			googleStartDate = googleCalendarEvent.getStart().getDate();
+			start = new DateTime(googleStartDate.getValue(), DateTimeZone.getDefault());
+//			start = new DateTime(googleStartDate.getValue(), DateTimeZone.forOffsetHours(googleStartDate.getTimeZoneShift())).withZoneRetainFields(DateTimeZone.getDefault());
+		} else {
+			start = new DateTime(googleStartDate.getValue());
 		}
-		start = new DateTime(googleStartDate.getValue());
 	}
 
 	public DateTime getStart() {

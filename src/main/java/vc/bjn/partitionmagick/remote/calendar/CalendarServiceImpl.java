@@ -2,18 +2,15 @@ package vc.bjn.partitionmagick.remote.calendar;
 
 import vc.bjn.partitionmagick.data.entity.CalendarEvent;
 
+import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.Events;
-import com.google.common.base.Predicate;
-import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.CacheLoader;
-import com.google.common.cache.LoadingCache;
-import com.google.common.collect.Collections2;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
+import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,29 +22,29 @@ public class CalendarServiceImpl implements CalendarService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CalendarServiceImpl.class);
 	private static final String ORDERBY_STARTTIME = "startTime";
-	private static final int CACHE_LIFE_MINUTES = 30;
 
 	@Value("${calendar.id}") private String calendarId;
 	@Autowired private Calendar calendar;
 
-	private final LoadingCache<String, List<CalendarEvent>> eventListCache;
+	private List<CalendarEvent> cachedEvents;
 
 	public CalendarServiceImpl() {
-		final CacheLoader<String, List<CalendarEvent>> cacheLoader = new CacheLoader<String, List<CalendarEvent>>(){
+		/*final CacheLoader<String, List<CalendarEvent>> cacheLoader = new CacheLoader<String, List<CalendarEvent>>(){
 
 			@Override
 			public List<CalendarEvent> load(final String key) throws Exception {
 				return _downloadEvents(key);
 			}
 		};
-		eventListCache = CacheBuilder.newBuilder().expireAfterWrite(CACHE_LIFE_MINUTES, TimeUnit.MINUTES).build(cacheLoader);
+		eventListCache = CacheBuilder.newBuilder().expireAfterWrite(CACHE_LIFE_MINUTES, TimeUnit.MINUTES).build(cacheLoader);*/
 	}
 
-	protected List<CalendarEvent> getEvents(){
-		return eventListCache.getUnchecked(calendarId);
+	@PostConstruct
+	private void init(){
+		updateEvents();
 	}
 
-	private List<CalendarEvent> _downloadEvents(final String calId) {
+	private List<CalendarEvent> downloadEvents(final String calId) {
 		LOGGER.debug("Downloading calendar {}", calId);
 		final List<CalendarEvent> results = new ArrayList<>();
 		String pageToken = null;
@@ -58,6 +55,7 @@ public class CalendarServiceImpl implements CalendarService {
 					.setSingleEvents(true)
 					.setOrderBy(ORDERBY_STARTTIME)
 					.setPageToken(pageToken)
+					.setTimeMin(new DateTime(new Date()))
 					.execute();
 
 				final List<Event> items = response.getItems();
@@ -70,6 +68,11 @@ public class CalendarServiceImpl implements CalendarService {
 
 			} while(pageToken != null);
 
+			LOGGER.debug("downloaded calendar events:");
+			for(final CalendarEvent event : results){
+				LOGGER.debug(event.toString());
+			}
+
 			return results;
 
 		} catch (final IOException e) {
@@ -79,9 +82,14 @@ public class CalendarServiceImpl implements CalendarService {
 	}
 
 	@Override
-	public List<CalendarEvent> findEvents(final Predicate<CalendarEvent> predicate) {
-		final List<CalendarEvent> events = getEvents();
-		return new ArrayList<>(Collections2.filter(events, predicate));
+	public List<CalendarEvent> updateEvents() {
+		cachedEvents = downloadEvents(calendarId);
+		return getCachedEvents();
+	}
+
+	@Override
+	public List<CalendarEvent> getCachedEvents() {
+		return cachedEvents;
 	}
 
 }

@@ -1,6 +1,5 @@
 package vc.bjn.partitionmagick.ui.controller;
 
-import vc.bjn.partitionmagick.data.predicates.CalendarPredicates;
 import vc.bjn.partitionmagick.data.repository.PartitionRepository;
 import vc.bjn.partitionmagick.remote.calendar.CalendarService;
 
@@ -20,7 +19,7 @@ public class DashboardController {
 	@RequestMapping
 	public String index(final ModelMap model){
 		model.addAttribute("partitions", partitionRepository.findAll(new Sort("sort")));
-		model.addAttribute("calendarEvents", calendarService.findEvents(CalendarPredicates.FUTURE_EVENTS));
+		model.addAttribute("calendarEvents", calendarService.getCachedEvents());
 		return "dashboard";
 	}
 

@@ -3,9 +3,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>vc.bjn.partitionmagick</groupId>
 	<artifactId>partitionmagick</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>PartitionMagic</name>
+	<name>PartitionMagick</name>
 	<description>Which branch and version is running on which partition, and when will this change?</description>
 
 	<properties>
@@ -43,11 +43,6 @@
 		<!-- Jersey -->
 		<!--<dependency>
 			<groupId>org.glassfish.jersey.media</groupId>
-			<artifactId>jersey-media-sse</artifactId>
-			<version>${jersey.version}</version>
-		</dependency>-->
-		<dependency>
-			<groupId>org.glassfish.jersey.media</groupId>
 			<artifactId>jersey-media-json-jackson</artifactId>
 			<version>${jersey.version}</version>
 		</dependency>
@@ -60,7 +55,7 @@
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-servlet</artifactId>
 			<version>${jersey.version}</version>
-		</dependency>
+		</dependency>-->
 
 		<!-- Logging -->
 		<dependency>
@@ -71,6 +66,11 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
 
@@ -133,15 +133,6 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jsp-api</artifactId>
 			<version>2.0</version>
-			<scope>provided</scope>
-		</dependency>
-		
-
-		<!-- WebSockets -->
-		<dependency>
-			<groupId>javax.websocket</groupId>
-			<artifactId>javax.websocket-api</artifactId>
-			<version>1.0</version>
 			<scope>provided</scope>
 		</dependency>
 		
