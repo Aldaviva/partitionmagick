@@ -4,8 +4,9 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>Editor - Partitions</title>
+		<title>Editor - PartitionMagick</title>
 		<link href="${pageContext.request.contextPath}/styles/editor.css" rel="stylesheet" type="text/css" />
+		<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/favicon.ico">
 	</head>
 	
 	<body>

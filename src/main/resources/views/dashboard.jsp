@@ -5,8 +5,9 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>Partitions</title>
+		<title>PartitionMagick</title>
 		<link href="${pageContext.request.contextPath}/styles/dashboard.css" rel="stylesheet" type="text/css" />
+		<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/favicon.ico">
 	</head>
 	
 	<body>
