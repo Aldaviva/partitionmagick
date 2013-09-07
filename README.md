@@ -10,16 +10,23 @@ Which branch and version is running on which partition, and when will this chang
 ## Requirements
 
 * [Mongo](http://www.mongodb.org/downloads)
-* Java Servlet container with [Java API for WebSocket (JSR-356)](http://jcp.org/en/jsr/detail?id=356) support
-	* [GlassFish 4](http://glassfish.java.net/download.html)
-	* [Tomcat 8](http://tomcat.apache.org/download-80.cgi) *alpha RC1 as of 2013-09-04*
+* Java Servlet container
+	* Tested on [Jetty 8](http://central.maven.org/maven2/org/mortbay/jetty/dist/jetty-deb/8.1.12.v20130726/)
+	* Will probably work on [Tomcat](http://tomcat.apache.org/)
+	* If you want to try a J2EE application server like JBoss, GlassFish, or Geronimo, be my guest
+* You need the private key for the Google Calendar API client, which is not checked in. Once you have `calendar_key.p12`, save it in `src/main/resources/META-INF`.
 
 ## Building and Deploying
 
-You need the private key for the Google Calendar API client, which is not checked in. Once you have `calendar_key.p12`, save it in `src/main/resources/META-INF`.
+#### build
 
 	$ mvn package
+
+#### deploy
+
 	$ cp target/partitionmagick.war /path/to/webapps
+	
+Go to http://127.0.0.1:8080/partitionmagick/ or wherever you deployed to.
 
 ## Pages
 
@@ -27,7 +34,9 @@ You need the private key for the Google Calendar API client, which is not checke
 
 **editor** `/partitionmagick/admin`
 
-**wiki iframe** `/partitionmagick/wiki`
+## Known Issues
+
+* Apache httpd does not ProxyPass websockets using default configuration
 
 ## Buzzwords
 
@@ -35,10 +44,9 @@ You need the private key for the Google Calendar API client, which is not checke
 * Java
 	* Servlets
 	* JSP
-	* WebSockets
 * Spring
 	* Spring Data
 	* Spring Web MVC
-* Jersey
+* Atmosphere
 * LESS
 * Google Calendar API
