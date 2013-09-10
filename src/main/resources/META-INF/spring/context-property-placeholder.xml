@@ -9,8 +9,7 @@
 	<!-- This file is not the primary entry point to Spring context configuration. 
 		It is imported by AppConfig.java, which is loaded by web.xml -->
 
-	<!-- This is impossible in Spring JavaConfig because the list of filenames 
-		has a wildcard -->
-	<context:property-placeholder location="classpath*:META-INF/*.properties" />
+	<!-- This is impossible in Spring JavaConfig because the list of filenames has a wildcard -->
+	<context:property-placeholder location="classpath*:META-INF/prod/*.properties,classpath*:META-INF/${env}/*.properties" ignore-unresolvable="true" />
 
 </beans>

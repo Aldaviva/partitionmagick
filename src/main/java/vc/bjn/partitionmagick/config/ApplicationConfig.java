@@ -7,8 +7,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @Configuration
 @ImportResource("classpath:META-INF/spring/context-property-placeholder.xml")
-@ComponentScan("vc.bjn.partitionmagick")
+@ComponentScan(ApplicationConfig.PACKAGE_SCAN)
 @EnableScheduling
 public class ApplicationConfig {
+
+	public static final String PACKAGE_SCAN = "vc.bjn.partitionmagick";
 
 }

@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @Configuration
-@EnableMongoRepositories(basePackages = "vc.bjn.partitionmagick")
+@EnableMongoRepositories(basePackages = ApplicationConfig.PACKAGE_SCAN)
 public class DatabaseConfig {
 
 	@Value("${db.host}") private String dbHost;
