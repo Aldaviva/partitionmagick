@@ -27,6 +27,7 @@
 		</div>
 		
 		<div class="calendar">
+			<h1>Release Calendar</h1>
 			<c:forEach items="${calendarEvents}" var="event">
 				<div class="event">
 					<div class="date">
