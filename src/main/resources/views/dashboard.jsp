@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>
+<%@ page trimDirectiveWhitespaces="true" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -43,19 +44,16 @@
 					</div>
 					
 					<div class="name">
-						<c:forTokens items="${event.name}" delims=" " var="token">
+						<c:set var="eventName" value="${event.name}" />
+						<% pageContext.setAttribute("tokens", ((String) pageContext.getAttribute("eventName")).split("(?<=,)|(?=,)|(?<=\\s+)|(?=\\s+)")); %>
+						<c:forEach items="${tokens}" var="token">
 							<c:choose>
-								<c:when test='${fn:containsIgnoreCase("z1 z2 a1 a2 q1 q2", token)}'>
-									<span class="partition">${token}</span>
-								</c:when>
-								<c:when test='${fn:containsIgnoreCase("master rel beta live", token)}'>
-									<span class="branch ${fn:toLowerCase(token)}">${fn:toUpperCase(token)}</span>
-								</c:when>
-								<c:otherwise>
-									<c:out value="${token}" />
-								</c:otherwise>
+								<c:when test='${token.equals(" ")}'><c:out value="${token}" /></c:when>
+								<c:when test='${fn:containsIgnoreCase("z1 z2 a1 a2 q1 q2", token)}'><span class="partition">${token}</span></c:when>
+								<c:when test='${fn:containsIgnoreCase("master rel beta live", token)}'><span class="branch ${fn:toLowerCase(token)}">${fn:toUpperCase(token)}</span></c:when>
+								<c:otherwise><c:out value="${token}" /></c:otherwise>
 							</c:choose>
-						</c:forTokens>
+						</c:forEach>
 					</div>
 				</div>
 			</c:forEach>
