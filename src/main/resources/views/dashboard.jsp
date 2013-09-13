@@ -49,7 +49,7 @@
 									<span class="partition">${token}</span>
 								</c:when>
 								<c:when test='${fn:containsIgnoreCase("master rel beta live", token)}'>
-									<span class="branch ${token}">${token}</span>
+									<span class="branch ${fn:toLowerCase(token)}">${fn:toUpperCase(token)}</span>
 								</c:when>
 								<c:otherwise>
 									<c:out value="${token}" />

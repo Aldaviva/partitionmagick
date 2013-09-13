@@ -9,6 +9,11 @@
 	<!-- This file is not the primary entry point to Spring context configuration. 
 		It is imported by AppConfig.java, which is loaded by web.xml -->
 
+	<!-- 
+		dev mode:  launch the server with -Denv=dev
+		prod mode: launch the server with -Denv=prod, or just omit the env variable altogether
+	 -->
+
 	<!-- This is impossible in Spring JavaConfig because the list of filenames has a wildcard -->
 	<context:property-placeholder location="classpath*:META-INF/prod/*.properties,classpath*:META-INF/${env}/*.properties" ignore-unresolvable="true" />
 
