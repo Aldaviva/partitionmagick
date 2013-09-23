@@ -11,8 +11,9 @@
 	.event {
 		background-color: hsl(0, 0%, 10%);
 		position: relative;
-		width: 474px;
+		width: 472px;
 		min-height: 123px;
+		border-left: 2px solid black;
 		
 		.date {
 			background-color: hsl(0, 0%, 9%);
@@ -52,6 +53,10 @@
 		
 		+ .event {
 			margin-top: 23px;
+		}
+		
+		&.prod {
+			border-color: @orange;
 		}
 	}
 }

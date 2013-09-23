@@ -24,7 +24,7 @@
 					
 					<div class="branch ${partition.branch}">${partition.branch}</div>
 					
-					<div class="pluginColor">${fn:substring(partition.pluginColor, 0, 1)}</div>
+					<div class="pluginColor" title="${fn:toLowerCase(partition.pluginColor)} plugin">${fn:substring(partition.pluginColor, 0, 1)}</div>
 				</div>
 			</c:forEach>
 		</div>
@@ -32,16 +32,16 @@
 		<div class="calendar">
 			<h1>Release Calendar</h1>
 			<c:forEach items="${calendarEvents}" var="event">
-				<div class="event">
+				<div class="event ${(fn:containsIgnoreCase(event.name, 'z1') || fn:containsIgnoreCase(event.name, 'z2')) ? 'prod' : ''}">
 					<div class="date">
-						<span class="month">
-							<joda:format value="${event.start}" pattern="MMM"/>
+						<span class="day-of-week">
+							<joda:format value="${event.start}" pattern="E"/>
 						</span>
 						<span class="day-of-month">
 							<joda:format value="${event.start}" pattern="d"/>
 						</span>
-						<span class="day-of-week">
-							<joda:format value="${event.start}" pattern="E"/>
+						<span class="month">
+							<joda:format value="${event.start}" pattern="MMM"/>
 						</span>
 					</div>
 					
