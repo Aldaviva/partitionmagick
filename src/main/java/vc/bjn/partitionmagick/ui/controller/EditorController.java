@@ -1,6 +1,7 @@
 package vc.bjn.partitionmagick.ui.controller;
 
 import vc.bjn.partitionmagick.data.entity.Partition;
+import vc.bjn.partitionmagick.data.enums.PluginColor;
 import vc.bjn.partitionmagick.data.repository.PartitionRepository;
 import vc.bjn.partitionmagick.service.BroadcastService;
 
@@ -26,6 +27,7 @@ public class EditorController {
 		final EditorFormData formData = new EditorFormData();
 		formData.setPartitions(partitionRepository.findAll(new Sort("sort")));
 		model.addAttribute("formData", formData);
+		model.addAttribute("pluginColors", PluginColor.values());
 		return "editor";
 	}
 

@@ -23,7 +23,7 @@
 		.label {
 			font-size: 85px;
 			text-transform: uppercase;
-			.flex(3.2);
+			.flex(3);
 			
 			.name {
 				color: @orange;
@@ -33,13 +33,28 @@
 		.release {
 			//.gray-text(67%);
 			font-size: 47px;
-			.flex(2.2);
+			.flex(2.6);
 		}
 		
 		.branch {
 			font-size: 38px;
 			text-transform: uppercase;
 			.flex(1.2);
+		}
+		
+		.pluginColor {
+			@pluginColor_size: 36px;
+			background: rgba(255, 255, 255, 0.10);
+			.border-radius(8px);
+			text-align: center;
+			width: @pluginColor_size;
+			height: @pluginColor_size;
+			line-height: 1.06 * @pluginColor_size;
+			text-transform: uppercase;
+			.gray-text(78%);
+			font-size: 26px;
+			vertical-align: middle;
+			margin-right: 10px;
 		}
 	}
 }

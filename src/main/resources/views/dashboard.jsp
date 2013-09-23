@@ -23,6 +23,8 @@
 					<div class="release">${partition.release}</div>
 					
 					<div class="branch ${partition.branch}">${partition.branch}</div>
+					
+					<div class="pluginColor">${fn:substring(partition.pluginColor, 0, 1)}</div>
 				</div>
 			</c:forEach>
 		</div>

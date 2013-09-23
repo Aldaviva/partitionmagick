@@ -1,5 +1,7 @@
 package vc.bjn.partitionmagick.data.entity;
 
+import vc.bjn.partitionmagick.data.enums.PluginColor;
+
 import java.math.BigInteger;
 
 public class Partition {
@@ -15,6 +17,7 @@ public class Partition {
 	private String medNodeCount;
 	private String comments;
 	private Integer sort;
+	private PluginColor pluginColor;
 
 	public BigInteger getId() {
 		return id;
@@ -82,119 +85,101 @@ public class Partition {
 	public void setSort(final Integer sort) {
 		this.sort = sort;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((appNodeCount == null) ? 0 : appNodeCount.hashCode());
-		result = prime * result + ((branch == null) ? 0 : branch.hashCode());
-		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
-		result = prime * result + ((conNodeCount == null) ? 0 : conNodeCount.hashCode());
-		result = prime * result + ((environment == null) ? 0 : environment.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((medNodeCount == null) ? 0 : medNodeCount.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((popCount == null) ? 0 : popCount.hashCode());
-		result = prime * result + ((release == null) ? 0 : release.hashCode());
-		result = prime * result + ((sort == null) ? 0 : sort.hashCode());
-		return result;
+	public PluginColor getPluginColor() {
+		return pluginColor;
 	}
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final Partition other = (Partition) obj;
-		if (appNodeCount == null) {
-			if (other.appNodeCount != null) {
-				return false;
-			}
-		} else if (!appNodeCount.equals(other.appNodeCount)) {
-			return false;
-		}
-		if (branch == null) {
-			if (other.branch != null) {
-				return false;
-			}
-		} else if (!branch.equals(other.branch)) {
-			return false;
-		}
-		if (comments == null) {
-			if (other.comments != null) {
-				return false;
-			}
-		} else if (!comments.equals(other.comments)) {
-			return false;
-		}
-		if (conNodeCount == null) {
-			if (other.conNodeCount != null) {
-				return false;
-			}
-		} else if (!conNodeCount.equals(other.conNodeCount)) {
-			return false;
-		}
-		if (environment == null) {
-			if (other.environment != null) {
-				return false;
-			}
-		} else if (!environment.equals(other.environment)) {
-			return false;
-		}
-		if (id == null) {
-			if (other.id != null) {
-				return false;
-			}
-		} else if (!id.equals(other.id)) {
-			return false;
-		}
-		if (medNodeCount == null) {
-			if (other.medNodeCount != null) {
-				return false;
-			}
-		} else if (!medNodeCount.equals(other.medNodeCount)) {
-			return false;
-		}
-		if (name == null) {
-			if (other.name != null) {
-				return false;
-			}
-		} else if (!name.equals(other.name)) {
-			return false;
-		}
-		if (popCount == null) {
-			if (other.popCount != null) {
-				return false;
-			}
-		} else if (!popCount.equals(other.popCount)) {
-			return false;
-		}
-		if (release == null) {
-			if (other.release != null) {
-				return false;
-			}
-		} else if (!release.equals(other.release)) {
-			return false;
-		}
-		if (sort == null) {
-			if (other.sort != null) {
-				return false;
-			}
-		} else if (!sort.equals(other.sort)) {
-			return false;
-		}
-		return true;
+	public void setPluginColor(final PluginColor pluginColor) {
+		this.pluginColor = pluginColor;
 	}
+	
 	@Override
-	public String toString() {
-		return String
-			.format(
-				"Partition [id=%s, name=%s, environment=%s, release=%s, branch=%s, popCount=%s, appNodeCount=%s, conNodeCount=%s, medNodeCount=%s, comments=%s, sort=%s]",
-				id, name, environment, release, branch, popCount, appNodeCount, conNodeCount, medNodeCount, comments, sort);
-	}
+    public int hashCode() {
+	    final int prime = 31;
+	    int result = 1;
+	    result = prime * result + ((appNodeCount == null) ? 0 : appNodeCount.hashCode());
+	    result = prime * result + ((branch == null) ? 0 : branch.hashCode());
+	    result = prime * result + ((comments == null) ? 0 : comments.hashCode());
+	    result = prime * result + ((conNodeCount == null) ? 0 : conNodeCount.hashCode());
+	    result = prime * result + ((environment == null) ? 0 : environment.hashCode());
+	    result = prime * result + ((id == null) ? 0 : id.hashCode());
+	    result = prime * result + ((medNodeCount == null) ? 0 : medNodeCount.hashCode());
+	    result = prime * result + ((name == null) ? 0 : name.hashCode());
+	    result = prime * result + ((pluginColor == null) ? 0 : pluginColor.hashCode());
+	    result = prime * result + ((popCount == null) ? 0 : popCount.hashCode());
+	    result = prime * result + ((release == null) ? 0 : release.hashCode());
+	    result = prime * result + ((sort == null) ? 0 : sort.hashCode());
+	    return result;
+    }
+	@Override
+    public boolean equals(final Object obj) {
+	    if (this == obj)
+		    return true;
+	    if (obj == null)
+		    return false;
+	    if (getClass() != obj.getClass())
+		    return false;
+	    final Partition other = (Partition) obj;
+	    if (appNodeCount == null) {
+		    if (other.appNodeCount != null)
+			    return false;
+	    } else if (!appNodeCount.equals(other.appNodeCount))
+		    return false;
+	    if (branch == null) {
+		    if (other.branch != null)
+			    return false;
+	    } else if (!branch.equals(other.branch))
+		    return false;
+	    if (comments == null) {
+		    if (other.comments != null)
+			    return false;
+	    } else if (!comments.equals(other.comments))
+		    return false;
+	    if (conNodeCount == null) {
+		    if (other.conNodeCount != null)
+			    return false;
+	    } else if (!conNodeCount.equals(other.conNodeCount))
+		    return false;
+	    if (environment == null) {
+		    if (other.environment != null)
+			    return false;
+	    } else if (!environment.equals(other.environment))
+		    return false;
+	    if (id == null) {
+		    if (other.id != null)
+			    return false;
+	    } else if (!id.equals(other.id))
+		    return false;
+	    if (medNodeCount == null) {
+		    if (other.medNodeCount != null)
+			    return false;
+	    } else if (!medNodeCount.equals(other.medNodeCount))
+		    return false;
+	    if (name == null) {
+		    if (other.name != null)
+			    return false;
+	    } else if (!name.equals(other.name))
+		    return false;
+	    if (pluginColor != other.pluginColor)
+		    return false;
+	    if (popCount == null) {
+		    if (other.popCount != null)
+			    return false;
+	    } else if (!popCount.equals(other.popCount))
+		    return false;
+	    if (release == null) {
+		    if (other.release != null)
+			    return false;
+	    } else if (!release.equals(other.release))
+		    return false;
+	    if (sort == null) {
+		    if (other.sort != null)
+			    return false;
+	    } else if (!sort.equals(other.sort))
+		    return false;
+	    return true;
+    }
+	@Override
+    public String toString() {
+	    return "Partition [id=" + id + ", name=" + name + ", environment=" + environment + ", release=" + release + ", branch=" + branch + ", popCount=" + popCount + ", appNodeCount=" + appNodeCount + ", conNodeCount=" + conNodeCount + ", medNodeCount=" + medNodeCount + ", comments=" + comments + ", sort=" + sort + ", pluginColor=" + pluginColor + "]";
+    }
 }
