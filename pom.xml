@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>vc.bjn.partitionmagick</groupId>
 	<artifactId>partitionmagick</artifactId>
-	<version>1.0.11-SNAPSHOT</version>
+	<version>1.0.11</version>
 	<packaging>war</packaging>
 	<name>PartitionMagick</name>
 	<description>Which branch and version is running on which partition, and when will this change?</description>

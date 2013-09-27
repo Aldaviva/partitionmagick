@@ -15,7 +15,7 @@ public class CalendarUpdateServiceImpl implements CalendarUpdateService {
 
 	@Autowired private CalendarService calendarService;
 	@Autowired private BroadcastService broadcastService;
-
+	
 	@Override
 	@Scheduled(fixedRate=POLL_INTERVAL_MILLIS)
 	public void pollForUpdates() {

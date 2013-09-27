@@ -1,30 +1,12 @@
 package vc.bjn.partitionmagick.data.entity;
 
-import com.google.api.services.calendar.model.Event;
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 
 public class CalendarEvent {
 
 	private DateTime start;
 	private String name;
 	private String description;
-
-	public CalendarEvent(){
-	}
-
-	public CalendarEvent(final Event googleCalendarEvent){
-		name = googleCalendarEvent.getSummary();
-		description = googleCalendarEvent.getDescription();
-
-		com.google.api.client.util.DateTime googleStartDate = googleCalendarEvent.getStart().getDateTime();
-		if(googleStartDate == null){
-			googleStartDate = googleCalendarEvent.getStart().getDate();
-			start = new DateTime(googleStartDate.getValue(), DateTimeZone.forOffsetHours(googleStartDate.getTimeZoneShift())).withZoneRetainFields(DateTimeZone.getDefault());
-		} else {
-			start = new DateTime(googleStartDate.getValue());
-		}
-	}
 
 	public DateTime getStart() {
 		return start;

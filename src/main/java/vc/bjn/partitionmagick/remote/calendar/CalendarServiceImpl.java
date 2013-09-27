@@ -2,7 +2,6 @@ package vc.bjn.partitionmagick.remote.calendar;
 
 import vc.bjn.partitionmagick.data.entity.CalendarEvent;
 
-import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.Events;
@@ -11,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,19 +29,9 @@ public class CalendarServiceImpl implements CalendarService {
 
 	private List<CalendarEvent> cachedEvents;
 
-	public CalendarServiceImpl() {
-		/*final CacheLoader<String, List<CalendarEvent>> cacheLoader = new CacheLoader<String, List<CalendarEvent>>(){
-
-			@Override
-			public List<CalendarEvent> load(final String key) throws Exception {
-				return _downloadEvents(key);
-			}
-		};
-		eventListCache = CacheBuilder.newBuilder().expireAfterWrite(CACHE_LIFE_MINUTES, TimeUnit.MINUTES).build(cacheLoader);*/
-	}
-
 	@PostConstruct
 	private void init(){
+		LOGGER.info("Initial calendar poll.");
 		updateEvents();
 	}
 
@@ -55,13 +46,13 @@ public class CalendarServiceImpl implements CalendarService {
 					.setSingleEvents(true)
 					.setOrderBy(ORDERBY_STARTTIME)
 					.setPageToken(pageToken)
-					.setTimeMin(new DateTime(new Date()))
+					.setTimeMin(new com.google.api.client.util.DateTime(new Date()))
 					.execute();
 
 				final List<Event> items = response.getItems();
 				if(items != null){
 					for (final Event event : items) {
-						results.add(new CalendarEvent(event));
+						results.add(convertRemoteEventToCalendarEvent(event));
 					}
 					pageToken = response.getNextPageToken();
 				}
@@ -90,6 +81,24 @@ public class CalendarServiceImpl implements CalendarService {
 	@Override
 	public List<CalendarEvent> getCachedEvents() {
 		return cachedEvents;
+	}
+	
+	private CalendarEvent convertRemoteEventToCalendarEvent(final Event remoteEvent){
+		LOGGER.debug("Converting remote event {}", remoteEvent);
+		
+		
+		final CalendarEvent result = new CalendarEvent();
+		result.setName(remoteEvent.getSummary());
+		result.setDescription(remoteEvent.getDescription());
+		
+		com.google.api.client.util.DateTime googleStartDate = remoteEvent.getStart().getDateTime();
+		if(googleStartDate == null){
+			googleStartDate = remoteEvent.getStart().getDate();
+			result.setStart(new DateTime(googleStartDate.getValue(), DateTimeZone.forOffsetHours(googleStartDate.getTimeZoneShift())).withZoneRetainFields(DateTimeZone.getDefault()));
+		} else {
+			result.setStart(new DateTime(googleStartDate.getValue()));
+		}
+		return result;
 	}
 
 }

@@ -20,11 +20,9 @@
 						<span class="environment">${partition.environment}</span>
 					</div>
 					
-					<div class="release">${partition.release}</div>
+					<div class="release ${fn:toLowerCase(partition.pluginColor)}">${partition.release}</div>
 					
-					<div class="branch ${partition.branch}">${partition.branch}</div>
-					
-					<div class="pluginColor" title="${fn:toLowerCase(partition.pluginColor)} plugin">${fn:substring(partition.pluginColor, 0, 1)}</div>
+					<div class="branch">${partition.branch}</div>
 				</div>
 			</c:forEach>
 		</div>
@@ -52,7 +50,7 @@
 							<c:choose>
 								<c:when test='${token.equals(" ")}'><c:out value="${token}" /></c:when>
 								<c:when test='${fn:containsIgnoreCase("z1 z2 a1 a2 q1 q2", token)}'><span class="partition">${token}</span></c:when>
-								<c:when test='${fn:containsIgnoreCase("master rel beta live", token)}'><span class="branch ${fn:toLowerCase(token)}">${fn:toUpperCase(token)}</span></c:when>
+								<c:when test='${fn:containsIgnoreCase("master rel beta live", token)}'><span class="branch">${fn:toUpperCase(token)}</span></c:when>
 								<c:otherwise><c:out value="${token}" /></c:otherwise>
 							</c:choose>
 						</c:forEach>
