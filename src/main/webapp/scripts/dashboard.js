@@ -44,4 +44,8 @@
 	
 	var subsocket = atmosphere.subscribe(request);
 	
+	window.setTimeout(function(){
+		window.location.reload();
+	}, 3*60*1000);
+	
 })();
