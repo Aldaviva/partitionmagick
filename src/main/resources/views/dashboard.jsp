@@ -14,16 +14,18 @@
 	<body>
 		<div class="partitions">
 			<c:forEach items="${partitions}" var="partition">
-				<div class="partition">
-					<div class="label">
-						<span class="name">${partition.name}</span>
-						<span class="environment">${partition.environment}</span>
+				<c:if test="${!partition.name.isEmpty()}">
+					<div class="partition">
+						<div class="label">
+							<span class="name">${partition.name}</span>
+							<span class="environment">${partition.environment}</span>
+						</div>
+						
+						<div class="release ${fn:toLowerCase(partition.pluginColor)}">${partition.release}</div>
+						
+						<div class="branch">${partition.branch}</div>
 					</div>
-					
-					<div class="release ${fn:toLowerCase(partition.pluginColor)}">${partition.release}</div>
-					
-					<div class="branch">${partition.branch}</div>
-				</div>
+				</c:if>
 			</c:forEach>
 		</div>
 		
@@ -49,7 +51,7 @@
 						<c:forEach items="${tokens}" var="token">
 							<c:choose>
 								<c:when test='${token.equals(" ")}'><c:out value="${token}" /></c:when>
-								<c:when test='${fn:containsIgnoreCase("z1 z2 a1 a2 q1 q2", token)}'><span class="partition">${token}</span></c:when>
+								<c:when test='${fn:containsIgnoreCase("z1 z2 a1 a2 q1 q2 g1 g2 q11 q12 e f", token)}'><span class="partition">${token}</span></c:when>
 								<c:when test='${fn:containsIgnoreCase("master rel beta live", token)}'><span class="branch">${fn:toUpperCase(token)}</span></c:when>
 								<c:otherwise><c:out value="${token}" /></c:otherwise>
 							</c:choose>

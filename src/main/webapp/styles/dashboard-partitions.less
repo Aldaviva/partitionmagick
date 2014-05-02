@@ -14,8 +14,8 @@
 		flex-flow           : row no-wrap;
 		align-items         : center;
 		
-		//height: floor(@screen_height / @partition_count) - 1px;
-		height: 80px;
+		height: floor(0.98 * @screen_height / @partition_count) - 1px;
+		//height: 80px;
 		
 		+ .partition {
 			border-top: 1px solid hsl(0, 0%, 17%);
