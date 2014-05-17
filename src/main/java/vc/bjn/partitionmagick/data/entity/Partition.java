@@ -18,6 +18,7 @@ public class Partition {
 	private String comments;
 	private Integer sort;
 	private PluginColor pluginColor;
+	private String buildHash;
 
 	public BigInteger getId() {
 		return id;
@@ -91,6 +92,12 @@ public class Partition {
 	public void setPluginColor(final PluginColor pluginColor) {
 		this.pluginColor = pluginColor;
 	}
+	public String getBuildHash() {
+		return buildHash;
+	}
+	public void setBuildHash(final String buildHash) {
+		this.buildHash = buildHash;
+	}
 	
 	@Override
     public int hashCode() {
@@ -98,6 +105,7 @@ public class Partition {
 	    int result = 1;
 	    result = prime * result + ((appNodeCount == null) ? 0 : appNodeCount.hashCode());
 	    result = prime * result + ((branch == null) ? 0 : branch.hashCode());
+	    result = prime * result + ((buildHash == null) ? 0 : buildHash.hashCode());
 	    result = prime * result + ((comments == null) ? 0 : comments.hashCode());
 	    result = prime * result + ((conNodeCount == null) ? 0 : conNodeCount.hashCode());
 	    result = prime * result + ((environment == null) ? 0 : environment.hashCode());
@@ -110,76 +118,85 @@ public class Partition {
 	    result = prime * result + ((sort == null) ? 0 : sort.hashCode());
 	    return result;
     }
+	
 	@Override
     public boolean equals(final Object obj) {
-	    if (this == obj)
+	    if(this == obj)
 		    return true;
-	    if (obj == null)
+	    if(obj == null)
 		    return false;
-	    if (getClass() != obj.getClass())
+	    if(getClass() != obj.getClass())
 		    return false;
 	    final Partition other = (Partition) obj;
-	    if (appNodeCount == null) {
-		    if (other.appNodeCount != null)
+	    if(appNodeCount == null) {
+		    if(other.appNodeCount != null)
 			    return false;
-	    } else if (!appNodeCount.equals(other.appNodeCount))
+	    } else if(!appNodeCount.equals(other.appNodeCount))
 		    return false;
-	    if (branch == null) {
-		    if (other.branch != null)
+	    if(branch == null) {
+		    if(other.branch != null)
 			    return false;
-	    } else if (!branch.equals(other.branch))
+	    } else if(!branch.equals(other.branch))
 		    return false;
-	    if (comments == null) {
-		    if (other.comments != null)
+	    if(buildHash == null) {
+		    if(other.buildHash != null)
 			    return false;
-	    } else if (!comments.equals(other.comments))
+	    } else if(!buildHash.equals(other.buildHash))
 		    return false;
-	    if (conNodeCount == null) {
-		    if (other.conNodeCount != null)
+	    if(comments == null) {
+		    if(other.comments != null)
 			    return false;
-	    } else if (!conNodeCount.equals(other.conNodeCount))
+	    } else if(!comments.equals(other.comments))
 		    return false;
-	    if (environment == null) {
-		    if (other.environment != null)
+	    if(conNodeCount == null) {
+		    if(other.conNodeCount != null)
 			    return false;
-	    } else if (!environment.equals(other.environment))
+	    } else if(!conNodeCount.equals(other.conNodeCount))
 		    return false;
-	    if (id == null) {
-		    if (other.id != null)
+	    if(environment == null) {
+		    if(other.environment != null)
 			    return false;
-	    } else if (!id.equals(other.id))
+	    } else if(!environment.equals(other.environment))
 		    return false;
-	    if (medNodeCount == null) {
-		    if (other.medNodeCount != null)
+	    if(id == null) {
+		    if(other.id != null)
 			    return false;
-	    } else if (!medNodeCount.equals(other.medNodeCount))
+	    } else if(!id.equals(other.id))
 		    return false;
-	    if (name == null) {
-		    if (other.name != null)
+	    if(medNodeCount == null) {
+		    if(other.medNodeCount != null)
 			    return false;
-	    } else if (!name.equals(other.name))
+	    } else if(!medNodeCount.equals(other.medNodeCount))
 		    return false;
-	    if (pluginColor != other.pluginColor)
-		    return false;
-	    if (popCount == null) {
-		    if (other.popCount != null)
+	    if(name == null) {
+		    if(other.name != null)
 			    return false;
-	    } else if (!popCount.equals(other.popCount))
+	    } else if(!name.equals(other.name))
 		    return false;
-	    if (release == null) {
-		    if (other.release != null)
-			    return false;
-	    } else if (!release.equals(other.release))
+	    if(pluginColor != other.pluginColor)
 		    return false;
-	    if (sort == null) {
-		    if (other.sort != null)
+	    if(popCount == null) {
+		    if(other.popCount != null)
 			    return false;
-	    } else if (!sort.equals(other.sort))
+	    } else if(!popCount.equals(other.popCount))
+		    return false;
+	    if(release == null) {
+		    if(other.release != null)
+			    return false;
+	    } else if(!release.equals(other.release))
+		    return false;
+	    if(sort == null) {
+		    if(other.sort != null)
+			    return false;
+	    } else if(!sort.equals(other.sort))
 		    return false;
 	    return true;
     }
+	
 	@Override
     public String toString() {
-	    return "Partition [id=" + id + ", name=" + name + ", environment=" + environment + ", release=" + release + ", branch=" + branch + ", popCount=" + popCount + ", appNodeCount=" + appNodeCount + ", conNodeCount=" + conNodeCount + ", medNodeCount=" + medNodeCount + ", comments=" + comments + ", sort=" + sort + ", pluginColor=" + pluginColor + "]";
+	    return "Partition [id=" + id + ", name=" + name + ", environment=" + environment + ", release=" + release + ", branch=" + branch + ", popCount="
+	        + popCount + ", appNodeCount=" + appNodeCount + ", conNodeCount=" + conNodeCount + ", medNodeCount=" + medNodeCount + ", comments=" + comments
+	        + ", sort=" + sort + ", pluginColor=" + pluginColor + ", buildHash=" + buildHash + "]";
     }
 }

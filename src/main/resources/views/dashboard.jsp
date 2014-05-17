@@ -24,6 +24,8 @@
 						<div class="release ${fn:toLowerCase(partition.pluginColor)}">${partition.release}</div>
 						
 						<div class="branch">${partition.branch}</div>
+						
+						<div class="buildHash">${partition.buildHash}</div>
 					</div>
 				</c:if>
 			</c:forEach>
