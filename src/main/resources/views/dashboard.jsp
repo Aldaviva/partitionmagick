@@ -25,7 +25,7 @@
 						
 						<div class="branch">${partition.branch}</div>
 						
-						<div class="buildHash">${partition.buildHash}</div>
+						<%-- <div class="buildHash">${partition.buildHash}</div> --%>
 					</div>
 				</c:if>
 			</c:forEach>
